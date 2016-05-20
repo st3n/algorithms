@@ -1,0 +1,17 @@
+//half opened intervals:
+//1. difference between elements beg and end = length
+//2. element not found -> end()
+//3. divided on two parts
+
+def bs(A, k)
+assert(is_sorted)
+b,e = 0, len(A)
+if e==0
+	ret 0;
+if e ==1  ret e
+
+ret 0 if A[0] == k else e
+
+m = (b + e)/2 = b+ (e-b)//2 
+if k < A[m] : return bs(A[b:m], k)
+else return bs(A[m:e], k) + m
