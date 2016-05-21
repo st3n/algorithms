@@ -1,6 +1,15 @@
 #include <cassert>
 #include <iostream>
 
+/* Just first commit to set up enviroument. Poor search to
+ * find the element in the array and tests */
+
+/*********** TESTS CASES **********************
+* 1. {1} {2} el: 1 degenareted trivial case   *
+* 2. {1,2} {3,4} el: 2                        *
+* 3. {2, 4, 7, 9 , 34} el: beg, end, mid      *
+**********************************************/
+
 #define TEST_POSITIVE(FUNC_SEARCH, ARR, ARR_SIZE, KEY) assert(FUNC_SEARCH(ARR, ARR_SIZE, KEY) != -1)
 #define TEST_NEGATIVE(FUNC_SEARCH, ARR, ARR_SIZE, KEY) assert(FUNC_SEARCH(ARR, ARR_SIZE, KEY) == -1)
 
@@ -15,13 +24,6 @@ int search(int A[], int size, int key)
 	}
 	return -1;
 }
-
-/*********** TEST CASES ****************
-* 1. {1} {2} el: 1 degenareted trivial *
-* 2. {1,2} {3,4} el: 2                 *
-* 3. {2, 4, 7, 9 , 34}                 *
-* el: beg, end, mid                    *
-***************************************/
 
 int main ()
 {
