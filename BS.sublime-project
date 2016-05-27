@@ -1,0 +1,39 @@
+{
+    "build_systems":
+    [
+        {
+            "name": "Build",
+            "selector": "source.c++",
+            "cmd": ["g++", "-std=c++11", "-o", "bin/$file_base_name.exe", "$file_name"],
+            "file_regex": "^(..*):([0-9]+):([0-9]*): (error|note).*",
+   
+            "variants":
+            [
+                {
+                    "name": "Run",
+                    "working_dir": "${project_path}/bin",
+                    "cmd": ["$file_base_name.exe"]
+                }
+
+            ]
+        }
+    ],
+    "folders":
+    [
+        {
+            "name": "root",
+            "path": ".",
+            "folder_exclude_patterns": ["bin"]
+        },
+    ],
+    "settings":
+    {
+        "auto_indent": true,
+        "smart_indent": true,
+        "spell_check": false,
+        "tab_size": 4,
+        "translate_tabs_to_spaces": true,
+        "trim_automatic_white_space": true,
+        "word_wrap": "false"
+    }
+}
