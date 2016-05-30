@@ -141,12 +141,11 @@ TIter upper_bound_c(TIter begin, TIter end, T key)
 		// [begin m) [m] (m end)
 		auto m = begin + (end-begin)/2;
 
-		if (key > *m) // [begin, m)
-			begin = m+1;
-		else if (key < *m)
-         end = m-1;
-      else
-			begin = m;
+		if (*m < key) // [begin, m)
+			end = m;
+		else
+        	begin = m+1;
+     
 	}
 	return begin;
 }
@@ -162,7 +161,7 @@ TIter lower_bound_c(TIter begin, TIter end, T key)
 		// [begin m) [m] (m end)
 		auto m = begin + (end-begin)/2;
 
-		if (key > *m) // [begin, m)
+		if (*m < key) // [begin, m)
 			begin = m+1;
 		else
 			end = m;
