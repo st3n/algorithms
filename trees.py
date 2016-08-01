@@ -11,15 +11,11 @@ class Tree:
     def nodes(self):
         yield from dfs_1(self)
 
-    def height(self):
-        pass
 
-# deep first search
-def dfs_1(tree):
-    if tree:
-        yield tree
-        yield from dfs_1(tree.left)
-        yield from dfs_1(tree.right)
+def height(tree):
+    if not tree:
+        return 0
+    return 1 + max(height(self.left), height(right.left))
 
 def traverse_pre_order(tree, visitor):
     if tree:
