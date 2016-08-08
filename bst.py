@@ -57,11 +57,11 @@ def is_bst(tree):
     if not tree:
         return True
 
-    left_ok = not tree.left or tree.left < tree
-    right_ok = not tree.right or tree.right > tree
-
-    return left_ok and right_ok and \
-           is_bst(tree.left) and is_bst(tree.right)
+    return \
+            (not tree.left or (max_node(tree.left) < tree)) and \
+            (not tree.right or (max_node(tree.right) > tree)) and \
+            is_bst(tree.left) and \
+            is_bst(tree.right)
 
 def bfs_nodes(tree):
     queue = []
@@ -107,13 +107,31 @@ def max_node(bst):
 
 #next with inorder traverse
 def next_node(bst):
+    assert bst
+
     if bst.right:
         return min_node(bst.right)
+
+    if bst.parent:
+        if bst.parent.left == bst:
+            return bst.parent
+
+    while bst.parent and bst.parent.right == bst:
+        bst = bst.parent
+
     return bst.parent
 
 def prev_node(bst):
     if bst.left:
         return max_node(bst.left)
+
+    if bst.parent:
+        if bst.parent.right == bst:
+            return bst.parent
+
+    while bst.parent and bst.parent.left == bst:
+        bst = bst.parent
+
     return bst.parent
 
 begin = min_node
@@ -152,12 +170,14 @@ def insert(tree, x):
             return insert(tree.left, x)
         else:
             tree.left = Tree(x)
+            tree.left.parent = tree
             return tree.left
     elif tree.data < x:
         if tree.right:
             return insert(tree.right, x)
         else:
             tree.right = Tree(x)
+            tree.right.parent = tree
             return tree.right
 
     return tree
@@ -167,6 +187,24 @@ def rotate_1(tree, ):
 
 def remove(tree, x):
     place = lower_bound(tree, x)
+
+
+
+def is_black(node):
+    return not node or node.is_black
+
+def is_red(node):
+    return not is_black(node)
+
+def insert_rb_tree(tree, x):
+    assert is_rbtree()
+
+    node = insert(tree, x)
+
+    if is_black(node.parent):
+        node.is_black = False
+        return
+
 
 def create_tree_1():
     return Tree(10,
